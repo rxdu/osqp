@@ -5,8 +5,10 @@ cmake_minimum_required (VERSION 3.2)
 project (osqp)
 
 # Set the output folder where your program will be created
-set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/out)
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/out)
+# set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/out)
+# set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/out)
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
+set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # Some non-standard CMake modules
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/configure/cmake)
@@ -32,7 +34,7 @@ endif()
 # ----------------------------------------------
 
 # Are unittests generated?
-option (UNITTESTS "Enable unittests generation" ON)
+option (UNITTESTS "Enable unittests generation" OFF)
 
 # Is the code generated for embedded platforms?
 #   1 :   Yes. Matrix update not allowed.
@@ -69,7 +71,7 @@ endif()
 message(STATUS "User interrupt is ${CTRLC}")
 
 # Use floats instead of integers
-option (DFLOAT "Use float numbers instead of doubles" OFF)
+option (DFLOAT "Use float numbers instead of doubles" ON)
 message(STATUS "Floats are ${DFLOAT}")
 
 # Use long integers for indexing
